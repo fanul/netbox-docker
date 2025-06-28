@@ -2,23 +2,37 @@ version: '3.4'
 services:
   netbox:
     ports:
-    - 8080:8080
+      - 8080:8080
     volumes:
-    - /mnt/docker/netbox/config:/etc/netbox/config:z,ro
-    - /mnt/docker/netbox/media:/opt/netbox/netbox/media:z,rw
-    - /mnt/docker/netbox/reports:/opt/netbox/netbox/reports:z,rw
-    - /mnt/docker/netbox/files:/opt/netbox/netbox/scripts:z,rw
+      - /mnt/docker/netbox/config:/etc/netbox/config:z,ro
+      - /mnt/docker/netbox/media:/opt/netbox/netbox/media:z,rw
+      - /mnt/docker/netbox/reports:/opt/netbox/netbox/reports:z,rw
+      - /mnt/docker/netbox/files:/opt/netbox/netbox/scripts:z,rw
     healthcheck:
       retries: 15
+    networks:
+      expose:
+        ipv4_address: 1.2.3.22
   netbox-worker:
     volumes:
-    - /mnt/docker/netbox/config:/etc/netbox/config:z,ro
-    - /mnt/docker/netbox/media:/opt/netbox/netbox/media:z,rw
-    - /mnt/docker/netbox/reports:/opt/netbox/netbox/reports:z,rw
-    - /mnt/docker/netbox/files:/opt/netbox/netbox/scripts:z,rw
+      - /mnt/docker/netbox/config:/etc/netbox/config:z,ro
+      - /mnt/docker/netbox/media:/opt/netbox/netbox/media:z,rw
+      - /mnt/docker/netbox/reports:/opt/netbox/netbox/reports:z,rw
+      - /mnt/docker/netbox/files:/opt/netbox/netbox/scripts:z,rw
+    networks:
+      expose:
+        ipv4_address: 1.2.3.23
   netbox-housekeeping:
     volumes:
-    - /mnt/docker/netbox/config:/etc/netbox/config:z,ro
-    - /mnt/docker/netbox/media:/opt/netbox/netbox/media:z,rw
-    - /mnt/docker/netbox/reports:/opt/netbox/netbox/reports:z,rw
-    - /mnt/docker/netbox/files:/opt/netbox/netbox/scripts:z,rw
+      - /mnt/docker/netbox/config:/etc/netbox/config:z,ro
+      - /mnt/docker/netbox/media:/opt/netbox/netbox/media:z,rw
+      - /mnt/docker/netbox/reports:/opt/netbox/netbox/reports:z,rw
+      - /mnt/docker/netbox/files:/opt/netbox/netbox/scripts:z,rw
+    networks:
+      expose:
+        ipv4_address: 1.2.3.24
+
+networks:
+  expose:
+    external: true
+    name: expose
