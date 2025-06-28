@@ -17,11 +17,6 @@ services:
       - /mnt/docker/netbox/media:/opt/netbox/netbox/media:rw
       - /mnt/docker/netbox/reports:/opt/netbox/netbox/reports:rw
       - /mnt/docker/netbox/files:/opt/netbox/netbox/scripts:rw
-    ports:
-      - 8080:8080
-    networks:
-      expose:
-        ipv4_address: 1.2.3.22
       
   netbox-worker:
     <<: *netbox
@@ -82,7 +77,7 @@ services:
       - /mnt/docker/netbox/redis/data:/data
     networks:
       expose:
-        ipv4_address: 1.2.3.23
+        ipv4_address: 1.2.3.25
       
   redis-cache:
     image: docker.io/valkey/valkey:8.1-alpine
@@ -96,7 +91,7 @@ services:
       - /mnt/docker/netbox/redis/cache:/data
     networks:
       expose:
-        ipv4_address: 1.2.3.24
+        ipv4_address: 1.2.3.26
 
 volumes:
   netbox-media-files:
